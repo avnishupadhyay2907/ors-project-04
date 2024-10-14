@@ -35,7 +35,7 @@ public class TestCollege {
 			System.out.println(bean.getAddress());
 			System.out.println(bean.getState());
 			System.out.println(bean.getCity());
-			System.out.println(bean.getPhone_no());
+			System.out.println(bean.getphoneNo());
 			System.out.println(bean.getCreatedBy());
 			System.out.println(bean.getModifiedBy());
 			System.out.println(bean.getCreatedDateTime());
@@ -57,7 +57,7 @@ public class TestCollege {
 			System.out.println(bean.getAddress());
 			System.out.println(bean.getState());
 			System.out.println(bean.getCity());
-			System.out.println(bean.getPhone_no());
+			System.out.println(bean.getphoneNo());
 			System.out.println(bean.getCreatedBy());
 			System.out.println(bean.getModifiedBy());
 			System.out.println(bean.getCreatedDateTime());
@@ -89,7 +89,7 @@ public class TestCollege {
 			System.out.println(bean.getAddress());
 			System.out.println(bean.getState());
 			System.out.println(bean.getCity());
-			System.out.println(bean.getPhone_no());
+			System.out.println(bean.getphoneNo());
 			System.out.println(bean.getCreatedBy());
 			System.out.println(bean.getModifiedBy());
 			System.out.println(bean.getCreatedDateTime());
@@ -114,7 +114,7 @@ public class TestCollege {
 		bean.setAddress("rau");
 		bean.setState("madhya pradesh");
 		bean.setCity("indore");
-		bean.setPhone_no("7648880017");
+		bean.setphoneNo("7648880017");
 		bean.setCreatedBy("abc@gmail.com");
 		bean.setModifiedBy("xyz@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
@@ -132,7 +132,7 @@ public class TestCollege {
 		bean.setAddress("rau");
 		bean.setState("madhya pradesh");
 		bean.setCity("indore");
-		bean.setPhone_no("7648880017");
+		bean.setphoneNo("7648880017");
 		bean.setCreatedBy("abc@gmail.com");
 		bean.setModifiedBy("xyz@gmail.com");
 		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
