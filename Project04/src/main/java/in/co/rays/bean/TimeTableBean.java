@@ -77,4 +77,14 @@ public class TimeTableBean extends BaseBean {
 		this.subjectName = subjectName;
 	}
 
+	public String getKey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

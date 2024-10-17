@@ -4,25 +4,25 @@ import java.util.Date;
 
 public class StudentBean extends BaseBean {
 
-	private String first_name;
-	private String last_name;
+	private String firstName;
+	private String lastName;
 	private Date dob;
 	private String gender;
-	private String mobile_no;
+	private String mobileNo;
 	private String email;
-	private Long college_id;
-	private String college_name;
-	public String getFirst_name() {
-		return first_name;
+	private Long collegeId;
+	private String collegeName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLast_name() {
-		return last_name;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public Date getDob() {
 		return dob;
@@ -36,11 +36,11 @@ public class StudentBean extends BaseBean {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getMobile_no() {
-		return mobile_no;
+	public String getMobileNo() {
+		return mobileNo;
 	}
-	public void setMobile_no(String mobile_no) {
-		this.mobile_no = mobile_no;
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 	public String getEmail() {
 		return email;
@@ -48,17 +48,25 @@ public class StudentBean extends BaseBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Long getCollege_id() {
-		return college_id;
+	public Long getCollegeId() {
+		return collegeId;
 	}
-	public void setCollege_id(Long college_id) {
-		this.college_id = college_id;
+	public void setCollegeId(Long collegeId) {
+		this.collegeId = collegeId;
 	}
-	public String getCollege_name() {
-		return college_name;
+	public String getCollegeName() {
+		return collegeName;
 	}
-	public void setCollege_name(String college_name) {
-		this.college_name = college_name;
+	public void setCollegeName(String collegeName) {
+		this.collegeName = collegeName;
+	}
+	public String getKey() {
+		// TODO Auto-generated method stub
+		return id + "";
+	}
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return firstName + lastName;
 	}
 	
 }

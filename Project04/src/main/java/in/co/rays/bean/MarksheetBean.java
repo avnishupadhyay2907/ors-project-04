@@ -44,5 +44,13 @@ public class MarksheetBean extends BaseBean {
 	public void setMaths(int maths) {
 		this.maths = maths;
 	}
+	public String getKey() {
+		// TODO Auto-generated method stub
+		return id + "";
+	}
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return name;
+	}
 	
 }
