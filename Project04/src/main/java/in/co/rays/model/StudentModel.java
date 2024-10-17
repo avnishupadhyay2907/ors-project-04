@@ -1,3 +1,4 @@
+
 package in.co.rays.model;
 
 import java.sql.Connection;
@@ -41,23 +42,23 @@ public class StudentModel {
 
 		CollegeModel collegeModel = new CollegeModel();
 
-		CollegeBean collegeBean = collegeModel.findByPk(bean.getCollege_id());
+		CollegeBean collegeBean = collegeModel.findByPk(bean.getCollegeId());
 
-		bean.setCollege_name(collegeBean.getName());
+		bean.setCollegeName(collegeBean.getName());
 
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_student values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		int pk = nextPk();
 
 		pstmt.setLong(1, pk);
-		pstmt.setString(2, bean.getFirst_name());
-		pstmt.setString(3, bean.getLast_name());
+		pstmt.setString(2, bean.getFirstName());
+		pstmt.setString(3, bean.getLastName());
 		pstmt.setDate(4, new java.sql.Date(bean.getDob().getTime()));
 		pstmt.setString(5, bean.getGender());
-		pstmt.setString(6, bean.getMobile_no());
+		pstmt.setString(6, bean.getMobileNo());
 		pstmt.setString(7, bean.getEmail());
-		pstmt.setLong(8, bean.getCollege_id());
-		pstmt.setString(9, bean.getCollege_name());
+		pstmt.setLong(8, bean.getCollegeId());
+		pstmt.setString(9, bean.getCollegeName());
 		pstmt.setString(10, bean.getCreatedBy());
 		pstmt.setString(11, bean.getModifiedBy());
 		pstmt.setTimestamp(12, bean.getCreatedDateTime());
@@ -81,14 +82,14 @@ public class StudentModel {
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_student set first_name = ? ,last_name = ? ,dob = ? ,gender = ? ,mobile_no = ? ,email = ? ,college_id = ? ,gender = ? ,college_name = ?, modified_by = ?, created_datetime = ?, modified_datetime = ? where id = ?");
 
-		pstmt.setString(1, bean.getFirst_name());
-		pstmt.setString(2, bean.getLast_name());
+		pstmt.setString(1, bean.getFirstName());
+		pstmt.setString(2, bean.getLastName());
 		pstmt.setDate(3, new java.sql.Date(bean.getDob().getTime()));
 		pstmt.setString(4, bean.getGender());
-		pstmt.setString(5, bean.getMobile_no());
+		pstmt.setString(5, bean.getMobileNo());
 		pstmt.setString(6, bean.getEmail());
-		pstmt.setLong(7, bean.getCollege_id());
-		pstmt.setString(8, bean.getCollege_name());
+		pstmt.setLong(7, bean.getCollegeId());
+		pstmt.setString(8, bean.getCollegeName());
 		pstmt.setString(9, bean.getCreatedBy());
 		pstmt.setString(10, bean.getModifiedBy());
 		pstmt.setTimestamp(11, bean.getCreatedDateTime());
@@ -120,11 +121,11 @@ public class StudentModel {
 		StringBuffer sql = new StringBuffer("select * from st_student where 1=1");
 
 		if (bean != null) {
-			if (bean.getFirst_name() != null && bean.getFirst_name().length() > 0) {
-				sql.append(" and first_name like '" + bean.getFirst_name() + "'");
+			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
+				sql.append(" and first_name like '" + bean.getFirstName() + "'");
 
-				if (bean.getLast_name() != null && bean.getLast_name().length() > 0) {
-					sql.append(" and last_name like '" + bean.getLast_name() + "'");
+				if (bean.getLastName() != null && bean.getLastName().length() > 0) {
+					sql.append(" and last_name like '" + bean.getLastName() + "'");
 				}
 			}
 		}
@@ -141,14 +142,14 @@ public class StudentModel {
 			bean = new StudentBean();
 
 			bean.setId(rs.getLong(1));
-			bean.setFirst_name(rs.getString(2));
-			bean.setLast_name(rs.getString(3));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
 			bean.setDob(rs.getDate(4));
 			bean.setGender(rs.getString(5));
-			bean.setMobile_no(rs.getString(6));
+			bean.setMobileNo(rs.getString(6));
 			bean.setEmail(rs.getString(7));
-			bean.setCollege_id(rs.getLong(8));
-			bean.setCollege_name(rs.getString(9));
+			bean.setCollegeId(rs.getLong(8));
+			bean.setCollegeName(rs.getString(9));
 			bean.setCreatedBy(rs.getString(10));
 			bean.setModifiedBy(rs.getString(11));
 			bean.setCreatedDateTime(rs.getTimestamp(12));
@@ -172,14 +173,14 @@ public class StudentModel {
 	    if (rs.next()) {
 	        bean = new StudentBean(); // Create a new instance of UserBean when data is found
 	        bean.setId(rs.getLong(1));
-			bean.setFirst_name(rs.getString(2));
-			bean.setLast_name(rs.getString(3));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
 			bean.setDob(rs.getDate(4));
 			bean.setGender(rs.getString(5));
-			bean.setMobile_no(rs.getString(6));
+			bean.setMobileNo(rs.getString(6));
 			bean.setEmail(rs.getString(7));
-			bean.setCollege_id(rs.getLong(8));
-			bean.setCollege_name(rs.getString(9));
+			bean.setCollegeId(rs.getLong(8));
+			bean.setCollegeName(rs.getString(9));
 			bean.setCreatedBy(rs.getString(10));
 			bean.setModifiedBy(rs.getString(11));
 			bean.setCreatedDateTime(rs.getTimestamp(12));
@@ -206,14 +207,14 @@ public class StudentModel {
 		while (rs.next()) {
 			bean = new StudentBean();
 			  bean.setId(rs.getLong(1));
-				bean.setFirst_name(rs.getString(2));
-				bean.setLast_name(rs.getString(3));
+				bean.setFirstName(rs.getString(2));
+				bean.setLastName(rs.getString(3));
 				bean.setDob(rs.getDate(4));
 				bean.setGender(rs.getString(5));
-				bean.setMobile_no(rs.getString(6));
+				bean.setMobileNo(rs.getString(6));
 				bean.setEmail(rs.getString(7));
-				bean.setCollege_id(rs.getLong(8));
-				bean.setCollege_name(rs.getString(9));
+				bean.setCollegeId(rs.getLong(8));
+				bean.setCollegeName(rs.getString(9));
 				bean.setCreatedBy(rs.getString(10));
 				bean.setModifiedBy(rs.getString(11));
 				bean.setCreatedDateTime(rs.getTimestamp(12));

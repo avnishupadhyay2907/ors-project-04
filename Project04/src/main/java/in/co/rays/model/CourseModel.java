@@ -170,7 +170,7 @@ public class CourseModel {
 
 		Connection conn = JDBCDataSource.getConnection();
 
-		PreparedStatement pstmt = conn.prepareStatement("select * from st_course where roll_no = ?");
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_course where name = ?");
 
 		pstmt.setString(1,name);
 

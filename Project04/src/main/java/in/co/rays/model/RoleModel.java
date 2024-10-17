@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.co.rays.bean.DropdownListBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.util.JDBCDataSource;
 
@@ -168,5 +169,9 @@ public class RoleModel {
 		JDBCDataSource.closeConnection(conn);
 
 		return bean;
+	}
+
+	public List list() throws Exception {
+		return search(null);
 	}
 }

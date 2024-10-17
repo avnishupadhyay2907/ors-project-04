@@ -42,7 +42,7 @@ public class CollegeModel {
 		pstmt.setString(3, bean.getAddress());
 		pstmt.setString(4, bean.getState());
 		pstmt.setString(5, bean.getCity());
-		pstmt.setString(6, bean.getPhone_no());
+		pstmt.setString(6, bean.getphoneNo());
 		pstmt.setString(7, bean.getCreatedBy());
 		pstmt.setString(8, bean.getModifiedBy());
 		pstmt.setTimestamp(9, bean.getCreatedDateTime());
@@ -64,7 +64,7 @@ public class CollegeModel {
 		pstmt.setString(2, bean.getAddress());
 		pstmt.setString(3, bean.getState());
 		pstmt.setString(4, bean.getCity());
-		pstmt.setString(5, bean.getPhone_no());
+		pstmt.setString(5, bean.getphoneNo());
 		pstmt.setString(6, bean.getCreatedBy());
 		pstmt.setString(7, bean.getModifiedBy());
 		pstmt.setTimestamp(8, bean.getCreatedDateTime());
@@ -117,7 +117,7 @@ public class CollegeModel {
 			bean.setAddress(rs.getString(3));
 			bean.setState(rs.getString(4));
 			bean.setCity(rs.getString(5));
-			bean.setPhone_no(rs.getString(6));
+			bean.setphoneNo(rs.getString(6));
 		    bean.setCreatedBy(rs.getString(7));
 			bean.setModifiedBy(rs.getString(8));
 			bean.setCreatedDateTime(rs.getTimestamp(9));
@@ -147,7 +147,7 @@ public class CollegeModel {
 			bean.setAddress(rs.getString(3));
 			bean.setState(rs.getString(4));
 			bean.setCity(rs.getString(5));
-			bean.setPhone_no(rs.getString(6));
+			bean.setphoneNo(rs.getString(6));
 		    bean.setCreatedBy(rs.getString(7));
 			bean.setModifiedBy(rs.getString(8));
 			bean.setCreatedDateTime(rs.getTimestamp(9));
@@ -178,7 +178,7 @@ public class CollegeModel {
 			bean.setAddress(rs.getString(3));
 			bean.setState(rs.getString(4));
 			bean.setCity(rs.getString(5));
-			bean.setPhone_no(rs.getString(6));
+			bean.setphoneNo(rs.getString(6));
 		    bean.setCreatedBy(rs.getString(7));
 			bean.setModifiedBy(rs.getString(8));
 			bean.setCreatedDateTime(rs.getTimestamp(9));

@@ -44,7 +44,7 @@ public class MarksheetModel {
 		StudentModel studentModel = new StudentModel();
 		StudentBean studentBean = studentModel.findByPk(bean.getStudent_id());
 		
-		bean.setName(studentBean.getFirst_name()+" "+studentBean.getLast_name());
+		bean.setName(studentBean.getFirstName()+" "+studentBean.getLastName());
 		
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("insert into st_marksheet values (?,?,?,?,?,?,?,?,?,?,?)");
