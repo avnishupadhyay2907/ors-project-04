@@ -4,9 +4,11 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import in.co.rays.bean.WishlistBean;
+
 public class DataUtility {
 
-	public static final String APP_DATE_FORMAT = "MM/dd/yyyy";
+	public static final String APP_DATE_FORMAT = "dd-MM-yyyy";
 
 	public static final String APP_TIME_FORMAT = "MM/dd/yyyy HH:mm:ss";
 

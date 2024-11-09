@@ -8,6 +8,7 @@ import java.util.Set;
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.DropdownListBean;
 import in.co.rays.model.RoleModel;
+import in.co.rays.model.UserModel;
 
 public class HTMLUtility {
 
@@ -68,7 +69,7 @@ public class HTMLUtility {
 
 	public static void testGetListByMap() {
 
-		HashMap<String, String> map = new HashMap<>();
+		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("male", "male");
 		map.put("female", "female");
 
@@ -80,8 +81,7 @@ public class HTMLUtility {
 
 	public static void testGetListByList() throws Exception {
 
-		RoleModel model = new RoleModel();
-
+		UserModel model = new UserModel();
 		List<DropdownListBean> list = model.list();
 
 		String selectedValue = null;
