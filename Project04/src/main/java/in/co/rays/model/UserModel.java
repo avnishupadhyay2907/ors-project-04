@@ -99,20 +99,28 @@ public class UserModel {
 		System.out.println("Data Deleted Successfully..." + i);
 	}
 
-	public List search(UserBean bean) throws Exception {
+	public List search(UserBean bean , int pageNo, int pageSize) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
 
 		if (bean != null) {
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
-				sql.append(" and first_name like '" + bean.getFirstName() + "'");
+				sql.append(" and first_name like '" + bean.getFirstName() + "%'");
 
 				if (bean.getLastName() != null && bean.getLastName().length() > 0) {
-					sql.append(" and last_name like '" + bean.getLastName() + "'");
+					sql.append(" and last_name like '" + bean.getLastName() + "%'");
 				}
 			}
 		}
+		
+		if (pageSize > 0) {
+			pageNo = (pageNo - 1) * pageSize;
+			sql.append(" limit " + pageNo + ", " + pageSize);
+		}
+
+		System.out.println("sql ==>> " + sql.toString());
+
 		System.out.println(sql.toString());
 
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
@@ -208,5 +216,48 @@ public class UserModel {
 		JDBCDataSource.closeConnection(conn);
 
 		return bean;
+	}
+	
+	public UserBean authenticate(String loginId, String password) throws Exception {
+
+		System.out.println("data = " + loginId + " " + password);
+
+		Connection conn = JDBCDataSource.getConnection();
+
+		PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login_id = ? and password = ?");
+
+		pstmt.setString(1, loginId);
+		pstmt.setString(2, password);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		UserBean bean = null;
+
+		while (rs.next()) {
+
+			bean = new UserBean();
+
+			bean.setId(rs.getLong(1));
+			bean.setFirstName(rs.getString(2));
+			bean.setLastName(rs.getString(3));
+			bean.setLoginId(rs.getString(4));
+			bean.setPassword(rs.getString(5));
+			bean.setDob(rs.getDate(6));
+			bean.setMobileNo(rs.getString(7));
+			bean.setRoleId(rs.getLong(8));
+			bean.setGender(rs.getString(9));
+			bean.setCreatedBy(rs.getString(10));
+			bean.setModifiedBy(rs.getString(11));
+			bean.setCreatedDateTime(rs.getTimestamp(12));
+			bean.setModifiedDateTime(rs.getTimestamp(13));
+
+		}
+
+		return bean;
+
+	}
+	
+	public List list() throws Exception {
+		return search(null, 0, 0);
 	}
 }

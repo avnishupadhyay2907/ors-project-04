@@ -9,26 +9,34 @@ import java.util.List;
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.MarksheetBean;
 import in.co.rays.bean.StudentBean;
+import in.co.rays.exception.ApplicationException;
+import in.co.rays.exception.DatabaseException;
 import in.co.rays.util.JDBCDataSource;
 
 public class MarksheetModel {
 
 	public int nextPk() throws Exception {
 
+		Connection conn = null;
 		int pk = 0;
 
-		Connection conn = JDBCDataSource.getConnection();
+		try {
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_marksheet");
 
-		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_marksheet");
+			ResultSet rs = pstmt.executeQuery();
 
-		ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
 
-		while (rs.next()) {
+				pk = rs.getInt(1);
 
-			pk = rs.getInt(1);
+				System.out.println("max id = " + pk);
 
-			System.out.println("max id = " + pk);
-
+			}
+		} catch (Exception e) {
+			throw new DatabaseException("Exception : Exception in getting PK " + e);
+		} finally {
+			JDBCDataSource.closeConnection(conn);
 		}
 		return pk + 1;
 
@@ -37,45 +45,66 @@ public class MarksheetModel {
 	public void add(MarksheetBean bean) throws Exception {
 
 		MarksheetBean existBean = findByRoll_no(bean.getRoll_no());
-		
+
 		if (existBean != null) {
 			throw new Exception("roll_no already exist");
 		}
 		StudentModel studentModel = new StudentModel();
 		StudentBean studentBean = studentModel.findByPk(bean.getStudent_id());
-		
-		bean.setName(studentBean.getFirstName()+" "+studentBean.getLastName());
-		
-		Connection conn = JDBCDataSource.getConnection();
-		PreparedStatement pstmt = conn.prepareStatement("insert into st_marksheet values (?,?,?,?,?,?,?,?,?,?,?)");
-		int pk = nextPk();
 
-		pstmt.setLong(1, pk);
-		pstmt.setString(2, bean.getRoll_no());
-		pstmt.setLong(3, bean.getStudent_id());
-		pstmt.setString(4, bean.getName());
-		pstmt.setInt(5, bean.getPhysics());
-		pstmt.setInt(6, bean.getChemistry());
-		pstmt.setInt(7, bean.getMaths());
-		pstmt.setString(8, bean.getCreatedBy());
-		pstmt.setString(9, bean.getModifiedBy());
-		pstmt.setTimestamp(10, bean.getCreatedDateTime());
-		pstmt.setTimestamp(11, bean.getModifiedDateTime());
-		
-		int i = pstmt.executeUpdate();
+		bean.setName(studentBean.getFirstName() + " " + studentBean.getLastName());
 
-		System.out.println("Data Inserted  Successfully !!!" + i);
+		
+		Connection conn = null;
+		int pk = 0;
+
+		try {
+			pk = nextPk();
+
+			conn = JDBCDataSource.getConnection();
+
+			PreparedStatement pstmt = conn.prepareStatement("insert into st_marksheet values (?,?,?,?,?,?,?,?,?,?,?)");
+			pk = nextPk();
+
+			pstmt.setLong(1, pk);
+			pstmt.setString(2, bean.getRoll_no());
+			pstmt.setLong(3, bean.getStudent_id());
+			pstmt.setString(4, bean.getName());
+			pstmt.setInt(5, bean.getPhysics());
+			pstmt.setInt(6, bean.getChemistry());
+			pstmt.setInt(7, bean.getMaths());
+			pstmt.setString(8, bean.getCreatedBy());
+			pstmt.setString(9, bean.getModifiedBy());
+			pstmt.setTimestamp(10, bean.getCreatedDateTime());
+			pstmt.setTimestamp(11, bean.getModifiedDateTime());
+			int i1 = pstmt.executeUpdate();
+
+			conn.setAutoCommit(false);
+
+			conn.commit();
+			System.out.println("data inserted" + i1);
+
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				throw new ApplicationException("Exception : add rollback exception " + ex.getMessage());
+			}
+			throw new ApplicationException("Exception : Exception in add User " + e);
+		} finally {
+			JDBCDataSource.closeConnection(conn);
+		}
 
 	}
 
 	public void update(MarksheetBean bean) throws Exception {
 
 		MarksheetBean existBean = findByRoll_no(bean.getRoll_no());
-		
+
 		if (existBean != null && bean.getRoll_no() != existBean.getRoll_no()) {
 			throw new Exception("Data updated successfully...");
 		}
-		
+
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(
 				"update st_marksheet set roll_no = ?,student_id = ?,name = ?,physics = ?,chemistry = ?,maths = ?,created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ? where id = ?");
@@ -109,7 +138,7 @@ public class MarksheetModel {
 		System.out.println("Data Deleted Successfully..." + i);
 	}
 
-	public List search(MarksheetBean bean) throws Exception {
+	public List search(MarksheetBean bean, int pageNo, int pageSize) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 		StringBuffer sql = new StringBuffer("select * from st_marksheet where 1=1");
@@ -118,9 +147,16 @@ public class MarksheetModel {
 			if (bean.getName() != null && bean.getName().length() > 0) {
 				sql.append(" and name like '" + bean.getName() + "'");
 
-				
 			}
 		}
+		
+		if (pageSize > 0) {
+			pageNo = (pageNo - 1) * pageSize;
+			sql.append(" limit " + pageNo + ", " + pageSize);
+		}
+
+		System.out.println("sql ==>> " + sql.toString());
+
 		System.out.println(sql.toString());
 
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
@@ -174,7 +210,7 @@ public class MarksheetModel {
 			bean.setModifiedBy(rs.getString(9));
 			bean.setCreatedDateTime(rs.getTimestamp(10));
 			bean.setModifiedDateTime(rs.getTimestamp(11));
-			
+
 		}
 
 		JDBCDataSource.closeConnection(conn);
@@ -214,4 +250,7 @@ public class MarksheetModel {
 		return bean;
 	}
 
+	public List list() throws Exception {
+		return search(null, 0, 0);
+	}
 }
