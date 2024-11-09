@@ -49,7 +49,6 @@ public class CollegeBean extends BaseBean {
 	}
 
 	public String getKey() {
-		// TODO Auto-generated method stub
 		return id + "";
 	}
 
