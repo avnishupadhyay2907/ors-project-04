@@ -16,12 +16,12 @@ public class TestStudent {
 
 	public static void main(String[] args) throws Exception {
 
-		// testAdd();
+		 testAdd();
 		// testUpdate();
 		// testDelete();
 		// testSearch();
 		//testfindByPk();
-		testfindByEmail();
+		//testfindByEmail();
 	}
 
 	private static void testfindByEmail() throws Exception {
@@ -96,7 +96,7 @@ public class TestStudent {
 
 		bean.setFirstName("sushobhit");
 
-		List list = model.search(bean);
+		List list = model.search(bean, 0, 0);
 
 		Iterator it = list.iterator();
 
@@ -135,12 +135,12 @@ public class TestStudent {
 		StudentModel model = new StudentModel();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-		bean.setFirstName("sushobhit");
-		bean.setLastName("pandey");
-		bean.setDob(sdf.parse("2000-02-05"));
+		bean.setFirstName("Anand");
+		bean.setLastName("choudhary");
+		bean.setDob(sdf.parse("1997-09-15"));
 		bean.setGender("male");
 		bean.setMobileNo("7000201952");
-		bean.setEmail("sushobhit@gmail.com");
+		bean.setEmail("anand@gmail.com");
 		bean.setCollegeId((long) 1);
 		bean.setCreatedBy("abc@gmail.com");
 		bean.setModifiedBy("xyz@gmail.com");

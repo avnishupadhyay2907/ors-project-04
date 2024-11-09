@@ -79,7 +79,7 @@ public class TestCourse {
 
 		bean.setName("b_tech cs");
 
-		List list = model.search(bean);
+		List list = model.search(bean, 0, 0);
 
 		Iterator it = list.iterator();
 
