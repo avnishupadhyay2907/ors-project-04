@@ -1,10 +1,10 @@
-<%@page import="in.co.rays.ctl.WishlistCtl"%>
 <%@page import="in.co.rays.util.HTMLUtility"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="in.co.rays.util.DataUtility"%>
 <%@page import="in.co.rays.util.ServletUtility"%>
+<%@page import="in.co.rays.ctl.PositionCtl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +21,9 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<form action="<%=ORSView.WISHLIST_CTL%>" method="post">
+	<form action="<%=ORSView.POSITION_CTL%>" method="post">
 
-		<jsp:useBean id="bean" class="in.co.rays.bean.WishlistBean"
+		<jsp:useBean id="bean" class="in.co.rays.bean.PositionBean"
 			scope="request"></jsp:useBean>
 
 
@@ -41,7 +41,7 @@
 				<%
 					}
 				%>
-				Wishlist
+				Position
 				</font>
 		    </h1>
             
@@ -67,42 +67,42 @@
 				value="<%=DataUtility.getTimestamp(bean.getModifiedDateTime())%>">
 
 			<table>
+				
+<tr>
+					<th>Designation :</th>
+					<td><input type="text" name="designation"
+						placeholder="Enter Designation Name"
+						value="<%=DataUtility.getStringData(bean.getDesignation())%>"></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("designation", request)%></font></td>
+				</tr>
 				<tr>
-					<th>Product:</th>
+
+					<th>Opening Date :</th>
+					<td><input type="text" id="udate" name="openingDate"
+						placeholder="Select Opening Date"
+						value="<%=DataUtility.getDateString(bean.getOpeningDate())%>"></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("openingDate", request)%></font></td>
+				</tr>
+
+
+				<tr>
+					<th>Required Experience:</th>
+					<td><input type="text" name="requiredExperience"
+						placeholder="Enter Experience"
+						value="<%=DataUtility.getStringData(bean.getRequiredExperience())%>"></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("requiredExperience", request)%></font></td>
+				</tr>
+				<tr>
+					<th>Condition:</th>
 					<td>
 						<%
 							HashMap map = new HashMap();
-							map.put("Fortuner", "Fortuner");
-							map.put("RangeRover", "RangeRover");
-						%> <%=HTMLUtility.getList("product", bean.getProduct(), map)%>
+							map.put("Open", "Open");
+							map.put("Closed", "Closed");
+							map.put("OnHold", "OnHold");
+		%> <%=HTMLUtility.getList("condition", bean.getCondition(), map)%>
 					</td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("product", request)%></font></td>
-				</tr>
-
-				<tr>
-
-
-					<th>Date :</th>
-					<td><input type="text" id="udate" name="date"
-						placeholder="Select Date"
-						value="<%=DataUtility.getDateString(bean.getDate())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("date", request)%></font></td>
-				</tr>
-
-
-				<tr>
-					<th>User Name:</th>
-					<td><input type="text" name="userName"
-						placeholder="Enter User Name"
-						value="<%=DataUtility.getStringData(bean.getUserName())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("userName", request)%></font></td>
-				</tr>
-				<tr>
-					<th>Remark :</th>
-					<td><input type="text" name="remark"
-						placeholder="Enter Remark"
-						value="<%=DataUtility.getStringData(bean.getRemark())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("remark", request)%></font></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("condition", request)%></font></td>
 				</tr>
 
  <tr>
@@ -111,14 +111,14 @@
 						if (bean != null && bean.getId() > 0) {
 					%>
 					<td align="left" colspan="2">
-					<input type="submit" name="operation" value="<%=WishlistCtl.OP_UPDATE%>">
-					<input type="submit" name="operation" value="<%=WishlistCtl.OP_CANCEL%>">
+					<input type="submit" name="operation" value="<%=PositionCtl.OP_UPDATE%>">
+					<input type="submit" name="operation" value="<%=PositionCtl.OP_CANCEL%>">
 						<%
 							} else {
 						%>
 					<td align="left" colspan="2">
-					<input type="submit" name="operation" value="<%=WishlistCtl.OP_SAVE%>">
-					<input type="submit" name="operation" value="<%=WishlistCtl.OP_RESET%>">
+					<input type="submit" name="operation" value="<%=PositionCtl.OP_SAVE%>">
+					<input type="submit" name="operation" value="<%=PositionCtl.OP_RESET%>">
 						<%
 							}
 						%>

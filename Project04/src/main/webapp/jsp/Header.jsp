@@ -67,11 +67,17 @@
 				href="<%=ORSView.USER_CTL%>">Add User</a> | <a
 				href="<%=ORSView.USER_LIST_CTL%>">User List</a> | <a
 				href="<%=ORSView.ROLE_CTL%>">Add Role</a> | <a
-				href="<%=ORSView.ROLE_LIST_CTL%>">Role List</a>| 
-				<a href="<%=ORSView.WISHLIST_CTL%>">Add Wishlist</a>
-								<a href="<%=ORSView.WISHLIST_LIST_CTL%>"> Wishlist List</a>
+				href="<%=ORSView.ROLE_LIST_CTL%>">Role List</a>| <a
+				href="<%=ORSView.WISHLIST_CTL%>">Add Wishlist</a>| <a
+				href="<%=ORSView.WISHLIST_LIST_CTL%>"> Wishlist List</a>| <a
+				href="<%=ORSView.PATIENT_CTL%>">Add Patient</a>| <a
+				href="<%=ORSView.PATIENT_LIST_CTL%>"> Patient List</a>| <a
+				href="<%=ORSView.POSITION_CTL%>">Add Position</a>| <a
+				href="<%=ORSView.POSITION_LIST_CTL%>">Position List</a>|
+				 <a href="<%=ORSView.STOCK_PURCHASE_CTL%>">Add Stock Purchase</a>|
+					 <a href="<%=ORSView.STOCK_PURCHASE_LIST_CTL%>">Stock Purchase List</a>|
 				
-				<%
+				 <%
  	}
 
  		if (userBean.getRoleId() == RoleBean.COLLEGE || userBean.getRoleId() == RoleBean.ADMIN) {

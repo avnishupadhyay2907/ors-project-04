@@ -92,8 +92,8 @@ public class PatientModel {
 		StringBuffer sql = new StringBuffer("select * from patient where 1=1");
 
 		if (bean != null) {
-			if (bean.getName() != null && bean.getName().length() > 0) {
-				sql.append(" and name like '" + bean.getName() + "%'");
+			if (bean.getDisease() != null && bean.getDisease().length() > 0) {
+				sql.append(" and disease like '" + bean.getDisease() + "%'");
 			}
 			if (bean.getDateOFVisit() != null && bean.getDateOFVisit().getTime() > 0) {
 				sql.append(" and date_of_visit like '" + bean.getDateOFVisit() + "%'");
